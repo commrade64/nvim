@@ -1,2 +1,2 @@
-require "options"
+require "option"
 require "plugins"

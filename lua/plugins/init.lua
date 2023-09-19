@@ -1,6 +1,3 @@
--- Install package manager
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -14,16 +11,17 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Add plugins
 require('lazy').setup({
   { -- lsp configuration & plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'j-hui/fidget.nvim', tag = 'legacy' },
-
       -- 'opts = {}' is equivalent to 'require('neodev').setup({})'
       { 'folke/neodev.nvim', opts = {} },
     },
+    config = function()
+        require("plugins.lsp")
+    end
   },
 
   { -- completion
@@ -42,9 +40,9 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
-    -- config = function()
-    --   require 'nvim-treesitter.install'.compilers = { vim.NIL, "gcc", "clang", "cl", "zig" }
-    -- end
+    config = function()
+      require("plugins.treesitter")
+    end
   },
 
   { -- fuzzy finder (files, lsp, etc.)
@@ -59,6 +57,9 @@ require('lazy').setup({
         end,
       },
     },
+    config = function()
+      require("plugins.telescope")
+    end
   },
 
   { -- statusline
@@ -86,25 +87,26 @@ require('lazy').setup({
 
   { -- adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    config = function()
+        require("plugins.gitsigns")
+    end
   },
 
   { -- add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
     config = function()
       require('indent_blankline').setup({
         show_trailing_blankline_indent = false,
       })
-
       vim.cmd.highlight "IndentBlanklineChar guifg=#3c3836 gui=nocombine"
     end,
   },
 
   { -- colorscheme
     "catppuccin/nvim",
-    name = "catppuccin",
     priority = 1000,
+    name = "catppuccin",
+    build = ":CatppuccinCompile",
   },
 
   {
@@ -112,3 +114,5 @@ require('lazy').setup({
     priority = 1000,
   },
 })
+
+require("plugins.colors")

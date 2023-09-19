@@ -84,17 +84,7 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
 })
 
-lspconfig.csharp_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
 lspconfig.cssls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-lspconfig.gopls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
@@ -121,11 +111,6 @@ lspconfig.nixd.setup({
 })
 
 lspconfig.pyright.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-lspconfig.rust_analyzer.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })

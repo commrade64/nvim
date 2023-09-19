@@ -70,7 +70,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = gruvbox,
+        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
       },
@@ -94,7 +94,6 @@ require('lazy').setup({
     -- See `:help indent_blankline.txt`
     config = function()
       require('indent_blankline').setup({
-        -- char = '┊',
         show_trailing_blankline_indent = false,
       })
 
@@ -103,15 +102,13 @@ require('lazy').setup({
   },
 
   { -- colorscheme
-    'ellisonleao/gruvbox.nvim',
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
   },
 
   {
-      "rose-pine/neovim",
-      name = "rose-pine",
-      config = function()
-          vim.cmd.colorscheme "rose-pine"
-      end
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
   },
 })

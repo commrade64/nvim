@@ -1,49 +1,12 @@
--- gruvbox setup
-local status, gruvbox = pcall(require, "gruvbox")
-if not status then
-  print("gruvbox is not installed")
-  return
-end
-
-gruvbox.setup({
-  undercurl = true,
-  underline = true,
-  bold = false,
-  italic = {
-    strings = false,
-    comments = true,
-    operators = false,
-    folds = false,
-  },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true,    -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {},
-  dim_inactive = false,
-  transparent_mode = false,
-})
-
--- catppuccin setup
-local status, catppuccin = pcall(require, "catppuccin")
-if not status then
-  print("catppuccin is not installed")
-  return
-end
-
 local colors = require("catppuccin.palettes").get_palette() -- fetch colors from palette
 
-catppuccin.setup({
-  flavour = "mocha", -- latte, frappe, macchiato, mocha
+local options = {
+  flavour = "macchiato", -- latte, frappe, macchiato, mocha
   background = { -- :h background
       light = "latte",
-      dark = "mocha",
+      dark = "macchiato",
   },
-  transparent_background = false,
+  transparent_background = true,
   compile = {
     enabled = true,
     path = vim.fn.stdpath "cache" .. "/catppuccin"
@@ -55,41 +18,10 @@ catppuccin.setup({
     nvimtree = true,
     treesitter = true,
   },
-  styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-    comments = { "italic" }, -- Change the style of comments
-    conditionals = {},
-    loops = {},
-    functions = {},
-    keywords = {},
-    strings = {},
-    variables = {},
-    numbers = {},
-    booleans = {},
-    properties = {},
-    types = {},
-    operators = {},
-  },
-  color_overrides = {
-    -- mocha = {
-    --   base = "#000000",
-    --   mantle = "#000000",
-    --   crust = "#000000",
-    -- },
-    -- macchiato = {
-    --   base = "#000000",
-    --   mantle = "#000000",
-    --   crust = "#000000",
-    -- },
-    -- frappe = {
-    --   base = "#000000",
-    --   mantle = "#000000",
-    --   crust = "#000000",
-    -- },
-  },
   custom_highlights = {
-    Comment = { fg = colors.surface2 }, -- just comments
+    Comment = { fg = colors.surface2, style = { "italic" } }, -- just comments
     Constant = { fg = colors.peach }, -- (preferred) any constant
-    String = { fg = colors.yellow }, -- a string constant: "this is a string"
+    String = { fg = colors.yellow, style = { "italic", "bold" } }, -- a string constant: "this is a string"
     Character = { fg = colors.teal }, --  a character constant: 'c', '\n'
     Number = { fg = colors.maroon }, --   a number constant: 234, 0xff
     Float = { fg = colors.maroon }, --    a floating point constant: 2.3e10
@@ -109,16 +41,16 @@ catppuccin.setup({
     Typedef = { fg = colors.yellow }, --  A typedef
     Special = { fg = colors.peach }, -- (preferred) any special symbol
     Type = { fg = colors.teal }, -- (preferred) int, long, char, etcp.
-    TSInclude = { fg = colors.peach },
-    ["@include"] = { fg = colors.peach },
+    TSInclude = { fg = colors.peach, style = { "italic" } },
+    ["@include"] = { fg = colors.peach, style = { "italic" } },
     TSField = { fg = colors.blue }, -- For fields.
     ["@field"] = { fg = colors.blue }, -- For fields.
     TSProperty = { fg = colors.blue }, -- Same as TSField.
     ["@property"] = { fg = colors.blue }, -- Same as TSField.
     TSConstant = { fg = colors.maroon }, -- For constants
     ["@constant.builtin"] = { fg = colors.maroon }, -- For constants
-    TSParameter = { fg = colors.text }, -- For parameters of a function.
-    ["@parameter"] = { fg = colors.text }, -- For parameters of a function.
+    TSParameter = { fg = colors.text, style = { "italic" } }, -- For parameters of a function.
+    ["@parameter"] = { fg = colors.text, style = { "italic" } }, -- For parameters of a function.
     TSOperator = { fg = colors.text },
     ["@operator"] = { fg = colors.text },
     TSKeywordFunction = { fg = colors.peach }, -- For keywords used to define a fuction.
@@ -129,26 +61,23 @@ catppuccin.setup({
     ["@keyword.return"] = { fg = colors.peach },
     TSType = { fg = colors.teal }, -- For types.
     ["@type"] = { fg = colors.teal }, -- For types.
-    TSTypeBuiltin = { fg = colors.teal }, -- For builtin types.
-    ["@type.builtin"] = { fg = colors.teal }, -- For builtin types.
+    TSTypeBuiltin = { fg = colors.teal, style = { "italic" } }, -- For builtin types.
+    ["@type.builtin"] = { fg = colors.teal, style = { "italic" } }, -- For builtin types.
     TSVariableBuiltin = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
     ["@variable.builtin"] = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
     TSFunction = { fg = colors.green }, -- For function (calls and definitions).
     ["@function.builtin"] = { fg = colors.green }, -- For function (calls and definitions).
     TSMethod = { fg = colors.green }, -- For method calls and definitions.
     ["@function"] = { fg = colors.green }, -- For method calls and definitions.
-    TSString = { fg = colors.yellow }, -- For strings.
-    ["@string"] = { fg = colors.yellow }, -- For strings.
+    TSString = { fg = colors.yellow, style = { "italic" } }, -- For strings.
+    ["@string"] = { fg = colors.yellow, style = { "italic" } }, -- For strings.
     BufferLineSeparator = { fg = colors.peach, bg = "NONE" },
     BufferLineBufferVisible = { fg = colors.surface1, bg = "NONE" },
-    BufferLineBufferSelected = { fg = colors.text, bg = "NONE" }, -- current
+    BufferLineBufferSelected = { fg = colors.text, bg = "NONE", style = { "bold", "italic" } }, -- current
     BufferLineIndicatorSelected = { fg = colors.peach, bg = "NONE" },
   },
-})
+}
 
-function ColorMyPencils(color)
-	color = color or "gruvbox"
-	vim.cmd.colorscheme(color)
-end
+require("catppuccin").setup(options)
 
-ColorMyPencils("catppuccin")
+vim.cmd [[colorscheme catppuccin]]

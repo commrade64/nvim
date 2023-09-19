@@ -89,6 +89,11 @@ lspconfig.csharp_ls.setup({
   capabilities = capabilities,
 })
 
+lspconfig.cssls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 lspconfig.gopls.setup({
   on_attach = on_attach,
   capabilities = capabilities,

@@ -1,3 +1,8 @@
+-- Remove any trailing whitespace on file savesvim.api.nvim_create_autocmd(
+vim.cmd [[
+  autocmd BufWritePre *.lua :%s/\s\+$//e
+]]
+
 -- Indentation (based on a filetype)
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "nix",

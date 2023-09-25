@@ -1,6 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- UI
 vim.o.nu = true
 vim.o.rnu = true

@@ -7,17 +7,11 @@ end
 ---@diagnostic disable-next-line: missing-fields
 nvim_treesiter_configs.setup({
   ensure_installed = {
-    'bash',
-    'bibtex',
     'c',
-    'c_sharp',
     'cpp',
     'css',
-    'go',
     'html',
     'javascript',
-    'json',
-    'latex',
     'lua',
     'markdown',
     'markdown_inline',
@@ -25,8 +19,6 @@ nvim_treesiter_configs.setup({
     'python',
     'rust',
     'scss',
-    'sql',
-    'toml',
     'typescript',
     'vim',
     'vimdoc',

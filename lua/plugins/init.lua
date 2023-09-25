@@ -20,14 +20,20 @@ require('lazy').setup({
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-        require("plugins.lsp")
+      require("plugins.lsp")
+    end
+  },
+
+  { -- completion engine
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require("plugins.luasnip")
     end
   },
 
   { -- completion
     'hrsh7th/nvim-cmp',
     dependencies = {
-      'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'rafamadriz/friendly-snippets',
@@ -68,20 +74,22 @@ require('lazy').setup({
     dependencies = {
       "nvim-tree/nvim-web-devicons"
     },
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'catppuccin',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
+    config = function()
+      require("plugins.lualine")
+    end
   },
 
   { -- commenting
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
+    end
+  },
+
+  {
+    'lervag/vimtex',
+    config = function()
+      require("plugins.vimtex")
     end
   },
 
@@ -102,17 +110,18 @@ require('lazy').setup({
     end,
   },
 
-  { -- colorscheme
-    "catppuccin/nvim",
-    priority = 1000,
-    name = "catppuccin",
-    build = ":CatppuccinCompile",
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end
   },
 
   {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
+    config = function()
+      require("plugins.gruvbox")
+    end
   },
 })
-
-require("plugins.colors")

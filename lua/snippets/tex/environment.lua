@@ -154,7 +154,7 @@ return {
     fmta(
       "$<>$",
       {
-        i(1),
+        d(1, helpers.get_visual),
       })),
   -- FIGURE
   s({ trig = "fig" },

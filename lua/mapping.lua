@@ -6,6 +6,10 @@ local opts = { silent = true, noremap = true }
 -- Open netrw
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
+-- Easier navigation for wrapped lines
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
+
 -- Move selected text easily
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -74,7 +78,7 @@ vim.cmd [[
 vim.keymap.set('', '<Leader>U', '<Cmd>lua require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/LuaSnip/"})<CR><Cmd>echo "Snippets refreshed!"<CR>')
 
 -- Telescope
-vim.keymap.set("n", "<leader>fw", ":lua require('telescope')<CR> <cmd>Telescope live_grep<cr>", opts)
-vim.keymap.set("n", "gr", ":lua require('telescope.builtin').lsp_references", { desc = "[G]oto [R]eferences" })
-vim.keymap.set("n", "<leader>s", ":lua require('telescope.builtin').lsp_document_symbols")
-vim.keymap.set("n", "<leader>S", ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols")
+vim.keymap.set("n", "<leader>lg", "<Cmd>lua require('telescope')<CR> <Cmd>Telescope live_grep<CR>", opts)
+vim.keymap.set("n", "gr", "<Cmd>lua require('telescope.builtin').lsp_references<CR>", { desc = "[G]oto [R]eferences" })
+vim.keymap.set("n", "<leader>s", "<Cmd>lua require('telescope.builtin').lsp_document_symbols<CR>")
+vim.keymap.set("n", "<leader>S", "<Cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols<CR>")

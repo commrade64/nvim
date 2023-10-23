@@ -1,8 +1,7 @@
 local helpers = require("misc.helpers.luasnip")
 
 -- Return snippet tables
-return
-{
+return {
   -- LEFT/RIGHT PARENTHESES
   s({ trig = "([^%a])l%(", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta(

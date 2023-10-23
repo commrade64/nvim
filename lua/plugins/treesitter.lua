@@ -7,6 +7,7 @@ end
 ---@diagnostic disable-next-line: missing-fields
 nvim_treesiter_configs.setup({
   ensure_installed = {
+    'bash',
     'c',
     'cpp',
     'css',

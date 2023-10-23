@@ -23,14 +23,14 @@ gruvbox.setup({
   invert_tabline = false,
   invert_intend_guides = false,
   inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
+  contrast = "", -- can be "hard", "soft" or empty string
   palette_overrides = {
-    -- dark0_hard = "#0c0c0c",
-    -- dark0 = "#0c0c0c",
-    -- dark0_soft = "#0c0c0c",
-    -- dark1 = "#282827",
-    -- dark2 = "#3a3837",
-    -- dark3 = "#514d49",
+    -- dark0_hard = "#0b0c0c",
+    -- dark0 = "#141414",
+    -- dark0_soft = "#1e1d1c",
+    -- dark1 = "#282624",
+    -- dark2 = "#3a3532",
+    -- dark3 = "#514942",
   },
   overrides = {},
   dim_inactive = false,

@@ -103,8 +103,10 @@ require('lazy').setup({
   { -- add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      require('indent_blankline').setup({
-        show_trailing_blankline_indent = false,
+      require('ibl').setup({
+        indent = {
+          char = '╎';
+        }
       })
       vim.cmd.highlight "IndentBlanklineChar guifg=#3c3836 gui=nocombine"
     end,
